@@ -1,3 +1,5 @@
+package learningscala
+
 object CurryingApproach {
 
   def curryingExampleOne(a: Int)(b: Int)(c: Int) = {

@@ -1,3 +1,5 @@
+package learningscala
+
 object RecursiveSum {
 
 

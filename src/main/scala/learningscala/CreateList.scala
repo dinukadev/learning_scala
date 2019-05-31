@@ -1,3 +1,5 @@
+package learningscala
+
 object CreateList {
 
   def main(args: Array[String]): Unit = {

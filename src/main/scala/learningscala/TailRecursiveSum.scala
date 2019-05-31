@@ -1,3 +1,5 @@
+package learningscala
+
 import scala.annotation.tailrec
 
 object TailRecursiveSum {

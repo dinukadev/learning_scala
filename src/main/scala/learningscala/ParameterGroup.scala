@@ -1,3 +1,5 @@
+package learningscala
+
 object ParameterGroup {
 
   def add(a:Int)(b:Int)(c:Int) = {

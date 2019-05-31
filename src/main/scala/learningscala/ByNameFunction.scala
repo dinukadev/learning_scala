@@ -1,3 +1,5 @@
+package learningscala
+
 object ByNameFunction {
 
   def byName[A](codeBlock: => A) = {

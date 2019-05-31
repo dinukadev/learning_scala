@@ -6,7 +6,11 @@ object TailRecursiveSum {
   def sum(list: List[Int]): Int = {
     @tailrec
     def sumWithAccumulator(list: List[Int], accumulator: Int): Int = list match {
-      case Nil => accumulator
+      case Nil => {
+        val stackTrace = Thread.currentThread.getStackTrace
+        stackTrace.foreach(println)
+        accumulator
+      }
       case x :: xs => sumWithAccumulator(xs, accumulator + x)
     }
 

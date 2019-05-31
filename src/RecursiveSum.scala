@@ -1,5 +1,6 @@
 object RecursiveSum {
 
+
   def sum(list:List[Int]):Int = list match{
     case Nil => {
       val stackTraceAsArray = Thread.currentThread.getStackTrace

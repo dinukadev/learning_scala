@@ -4,16 +4,17 @@ object TailRecursiveSum {
 
 
   def sum(list: List[Int]): Int = {
-    sumWithAccumulator(list,0)
+    @tailrec
+    def sumWithAccumulator(list: List[Int], accumulator: Int): Int = list match {
+      case Nil => accumulator
+      case x :: xs => sumWithAccumulator(xs, accumulator + x)
+    }
+
+    sumWithAccumulator(list, 0)
   }
 
-  @tailrec
-  private def sumWithAccumulator(list: List[Int], accumulator: Int): Int = list match{
-    case Nil => accumulator
-    case x :: xs  => sumWithAccumulator(xs,accumulator+x)
-  }
 
   def main(args: Array[String]): Unit = {
-    println(sum(List(1,2,3)))
+    println(sum(List(1, 2, 3)))
   }
 }

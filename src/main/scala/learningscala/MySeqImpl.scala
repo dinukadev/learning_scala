@@ -16,7 +16,13 @@ object MySeqImpl extends App {
     def map[B](f: A => B): Sequence[B] = {
       val abMap: ArrayBuffer[B] = elemes.map(f)
 
+      //the :_ part of the code is a way to adapt a collection to work with a varargs parameter.
       Sequence(abMap: _*)
+    }
+
+    def withFilter(f: A => Boolean): Sequence[A] = {
+      val filteredList = elemes.filter(f)
+      Sequence(filteredList: _*)
     }
   }
 
@@ -29,8 +35,15 @@ object MySeqImpl extends App {
   }
 
   val multipleByTwo = for {
-    i <-mySeq
-  } yield  i*2
+    i <- mySeq
+  } yield i * 2
 
   println(multipleByTwo)
+
+  val filterFour = for {
+    i <- multipleByTwo
+    if(i<3)
+  } yield(i)
+
+  println(filterFour)
 }

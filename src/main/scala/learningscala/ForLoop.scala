@@ -9,7 +9,7 @@ object ForLoop extends App {
   val namesStartingWithD = for {
     p <- personList
     firstName = p.name
-    if(firstName startsWith "D")
+    if(firstName.startsWith("D") && firstName.endsWith("a"))
   } yield firstName.toUpperCase
 
 

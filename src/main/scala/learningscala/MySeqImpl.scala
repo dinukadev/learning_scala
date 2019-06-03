@@ -24,6 +24,22 @@ object MySeqImpl extends App {
       val filteredList = elemes.filter(f)
       Sequence(filteredList: _*)
     }
+
+    def flatMap[B](f: A => Sequence[B]): Sequence[B] = {
+      val mapped: Sequence[Sequence[B]] = map(f)
+      flatten(mapped)
+    }
+
+    def flatten[B](seqOfSeq: Sequence[Sequence[B]]): Sequence[B]= {
+      var xs = ArrayBuffer[B]()
+      for(listB:Sequence[B] <- seqOfSeq){
+        for(e<- listB){
+          xs += e
+        }
+      }
+
+      Sequence(xs: _*)
+    }
   }
 
   val mySeq = new Sequence(1, 2, 3)
@@ -46,4 +62,17 @@ object MySeqImpl extends App {
   } yield(i)
 
   println(filterFour)
+
+
+  val myFirstList = Sequence(1,2,3)
+  val mySecondList = Sequence(2,4,3)
+
+  val itemsInBothLists = for {
+    listOneItem<- myFirstList
+    listTwoItem<- mySecondList
+    if(listOneItem==listTwoItem)
+  }yield listOneItem
+
+
+  println(itemsInBothLists)
 }

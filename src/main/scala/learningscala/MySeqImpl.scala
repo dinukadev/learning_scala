@@ -1,5 +1,6 @@
 package learningscala
 
+import scala.collection.JavaConversions.`deprecated asJavaIterable`
 import scala.collection.mutable.ArrayBuffer
 
 object MySeqImpl extends App{
@@ -8,9 +9,17 @@ object MySeqImpl extends App{
     private val elemes = ArrayBuffer[A]();
 
     elemes ++= initialElements
+
+    def foreach(block: A => Unit): Unit ={
+      elemes.foreach(block)
+    }
   }
 
   val mySeq = new Sequence(1,2,3)
 
   println(mySeq)
+
+  for(i<-mySeq){
+    println(i)
+  }
 }

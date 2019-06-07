@@ -1,5 +1,7 @@
 package learningscala
 
+import org.scalactic._
+
 import scala.util.{Failure, Success, Try}
 
 object HandleException extends App {
@@ -13,11 +15,6 @@ object HandleException extends App {
     case None => println("Oops exception occurred")
   }
 
-  makeIntWithTry("test") match {
-    case Success(i) => println(s"i= $i")
-    case Failure(e) => println(s"failure is $e")
-  }
-
   val result = for {
     x <- makeInt("1")
     y <- makeInt("2")
@@ -25,6 +22,16 @@ object HandleException extends App {
   } yield x + y + z
 
   println(result)
+
+  makeIntWithTry("test") match {
+    case Success(i) => println(s"i= $i")
+    case Failure(e) => println(s"failure is $e")
+  }
+
+  makeIntWithScalatic("test") match {
+    case Good(i) => println(s"i=$i")
+    case Bad(e) => println(s"failrure is $e")
+  }
 
   def makeInt(s: String): Option[Int] = {
     try {
@@ -34,11 +41,18 @@ object HandleException extends App {
     }
   }
 
-  def makeIntWithTry(s: String) : Try[Int] = {
+  def makeIntWithTry(s: String): Try[Int] = {
     Try(s.trim.toInt)
   }
 
+  def makeIntWithScalatic(s: String): Int Or ErrorMessage = {
 
+    try {
+      Good(s.trim.toInt)
+    } catch {
+      case e: Exception => Bad(e.toString)
+    }
+  }
 
 
 }

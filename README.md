@@ -15,5 +15,7 @@ To run the tests in IntelliJ, create the following file;
 with the content
 
 ```
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.6.0")
+addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.3")
 ```

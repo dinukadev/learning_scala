@@ -1,5 +1,7 @@
 package learningscala
 
+import scala.util.{Failure, Success, Try}
+
 object HandleException extends App {
 
   val handleEx = makeInt("test").getOrElse(0)
@@ -9,6 +11,11 @@ object HandleException extends App {
   makeInt("test") match {
     case Some(i) => println(s"i = $i")
     case None => println("Oops exception occurred")
+  }
+
+  makeIntWithTry("test") match {
+    case Success(i) => println(s"i= $i")
+    case Failure(e) => println(s"failure is $e")
   }
 
   val result = for {
@@ -26,6 +33,12 @@ object HandleException extends App {
       case e: Exception => None
     }
   }
+
+  def makeIntWithTry(s: String) : Try[Int] = {
+    Try(s.trim.toInt)
+  }
+
+
 
 
 }

@@ -1,13 +1,13 @@
 package learningscala.chapter66
 
-class Wrapper[Int](value: Int) {
+class Wrapper[A](value: A) {
 
-  def map(f: Int => Int): Wrapper[Int] = {
+  def map[B](f: A => B): Wrapper[B] = {
     val result = f(value)
     new Wrapper(result)
   }
 
-  def flatMap(f: Int => Wrapper[Int]): Wrapper[Int] = f(value)
+  def flatMap[B](f: A => Wrapper[B]): Wrapper[B] = f(value)
 
   override def toString: String = value.toString
 }

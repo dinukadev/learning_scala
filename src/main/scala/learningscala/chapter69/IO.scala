@@ -2,9 +2,13 @@ package learningscala.chapter69
 
 class IO[A] private(constructorCodeBlock: => A) {
 
-  def run = constructorCodeBlock
+  def run = {
+    constructorCodeBlock
+  }
 
-  def flatMapOrig[B](f: A => IO[B]): IO[B] = IO(f(run).run)
+  def flatMapOrig[B](f: A => IO[B]): IO[B] = {
+    IO(f(run).run)
+  }
 
   def flatMap[B](customAlgorithm: A => IO[B]): IO[B] = {
     val result1: IO[B] = customAlgorithm(run)
@@ -12,7 +16,9 @@ class IO[A] private(constructorCodeBlock: => A) {
     IO(result2)
   }
 
-  def map[B](f: A => B): IO[B] = flatMap(a => IO(f(a)))
+  def map[B](f: A => B): IO[B] = {
+    flatMap(a => IO(f(a)))
+  }
 
 }
 

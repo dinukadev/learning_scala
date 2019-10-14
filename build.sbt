@@ -9,5 +9,6 @@ scalacOptions += "-Ypartial-unification"
 libraryDependencies ++= Seq(
     "org.scalactic" %% "scalactic" % "3.0.5",
     "org.scalatest" %% "scalatest" % "3.0.1" % "test",
-    "org.typelevel" %% "cats-effect" % "2.0.0"
+    "org.typelevel" %% "cats-effect" % "2.0.0",
+    "org.typelevel" %% "cats-core" % "2.0.0"
 )
